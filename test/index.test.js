@@ -10,7 +10,6 @@ describe('Testes da Aplicação Express', () => {
     chai
       .request(app)
       .get('/')
-
       .end((err, res) => {
         expect(res.text).to.equal('Hello, World!');
         done();
