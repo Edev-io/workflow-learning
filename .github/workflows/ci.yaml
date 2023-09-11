@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: node src
+      - run: node src/index.js
