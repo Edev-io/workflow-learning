@@ -29,9 +29,15 @@ jobs:
       - name: Executar testes
         run: npm run test
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          push: false
+          push: true
           tags: eurico77/express-hello-word:latest
