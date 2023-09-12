@@ -1,1 +1,3 @@
-[![Quality Gate Status](http://localhost:9000/api/project_badges/measure?project=node-api&metric=alert_status&token=sqb_80663eea094aebc59d1ede11d02ea1497e24af62)](http://localhost:9000/dashboard?id=node-api)
+[![Quality gate](http://192.168.0.8:9000/api/project_badges/quality_gate?project=node-api&token=sqb_486f380728261867865ba907d3a994af180e3262)](http://192.168.0.8:9000/dashboard?id=node-api)
+
+[![Lines of Code](http://192.168.0.8:9000/api/project_badges/measure?project=node-api&metric=ncloc&token=sqb_486f380728261867865ba907d3a994af180e3262)](http://192.168.0.8:9000/dashboard?id=node-api)
