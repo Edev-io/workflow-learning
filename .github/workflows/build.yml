@@ -4,18 +4,30 @@ on:
   push:
     branches:
       - develop
-jobs:
-  build:
-    name: sonar-check
-    runs-on: ubuntu-latest
-    permissions: read-all
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Run sonar-check
+        run: |
+          ./gradlew sonarqube \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=admin \
+            -Dsonar.password=sqp_e1604d9ea3cdd4cc3ff82635c159a16df483849a
+
+      - name: Upload SonarQube analysis results
+        uses: actions/upload-artifact@v2
+        with:
+          name: sonarqube-report
+          path: .scannerwork/report
     
