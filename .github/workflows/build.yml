@@ -10,24 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # Versão do JDK
-          distribution: 'adopt'
+          java-version: '11'
 
-      - name: Run sonar-check
+      - name: Build with Maven
+        run: mvn clean install  # Substitua pelo comando de build apropriado
+
+      - name: SonarQube Scan
         run: |
-          ./gradlew sonarqube \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=admin \
-            -Dsonar.password=sqp_e1604d9ea3cdd4cc3ff82635c159a16df483849a
-
-      - name: Upload SonarQube analysis results
-        uses: actions/upload-artifact@v2
-        with:
-          name: sonarqube-report
-          path: .scannerwork/report
+          docker run --rm \
+            -e SONAR_HOST_URL=http://localhost:9000 \
+            -e SONAR_LOGIN=sqp_e1604d9ea3cdd4cc3ff82635c159a16df483849a \
+            -v "$(pwd):/usr/src" \
+            sonarsource/sonar-scanner-cli
