@@ -1,12 +1,12 @@
-name: Build
+name: sonar-check
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
 jobs:
   build:
-    name: Build
+    name: sonar-check
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
