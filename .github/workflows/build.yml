@@ -6,34 +6,24 @@ on:
       - develop
 
 jobs:
-  sonarqube:
+   sonarqube:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
-          java-package: 'jdk'
-          architecture: 'x64'
-          check-latest: false
-          server-id: 'github'
-          server-username: ${{ github.actor }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
-          overwrite-settings: true
-          job-status: 'success'
-          
-      - name: Build with Maven
-        run: mvn clean install  # Substitua pelo comando de build apropriado
 
-      - name: SonarQube Scan
+      - name: SonarQube Scanner
         run: |
-          docker run --rm \
-            -e SONAR_HOST_URL=http://localhost:9000 \
-            -e SONAR_LOGIN=sqp_e1604d9ea3cdd4cc3ff82635c159a16df483849a \
-            -v "$(pwd):/usr/src" \
-            sonarsource/sonar-scanner-cli
+          sonar-scanner \
+            -Dsonar.projectKey=node-api \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=sqp_e1604d9ea3cdd4cc3ff82635c159a16df483849a
+
+
