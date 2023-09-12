@@ -8,16 +8,14 @@ jobs:
   build:
     name: sonar-check
     runs-on: ubuntu-latest
-
+    permissions: read-all
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      with:
-        args: -Dsonar.verbose=true
-        projectBaseDir: .
-      env:
-        INPUT_SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        INPUT_SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    
