@@ -11,3 +11,4 @@ COPY . .
 EXPOSE 3000
 
 RUN npm run test
+RUN npm run coverage
