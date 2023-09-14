@@ -15,4 +15,29 @@ describe('Testes da Aplicação Express', () => {
         done();
       });
   });
+
+  describe('Testes da Aplicação Express', () => {
+    it('Deve criar um novo usuário', (done) => {
+      const newUser = {
+        name: 'John',
+        surName: 'Doe',
+        age: 30,
+      };
+
+      chai
+        .request(app)
+        .post('/users')
+        .send(newUser)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.have.property('id');
+          expect(res.body).to.have.property('name', newUser.name);
+          expect(res.body).to.have.property('surName', newUser.surName);
+          expect(res.body).to.have.property('age', newUser.age);
+          done();
+        });
+    });
+  });
 });

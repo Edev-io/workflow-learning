@@ -1,8 +1,8 @@
 const { randomUUID } = require('node:crypto');
 
-const users = [];
-
 module.exports = function createUser({ name, surName, age }) {
+  const users = [];
+
   const user = {
     id: randomUUID(),
     name,
