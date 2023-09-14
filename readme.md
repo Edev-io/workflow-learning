@@ -1,3 +1,5 @@
-[![Quality gate](http://192.168.0.8:9000/api/project_badges/quality_gate?project=node-api&token=sqb_486f380728261867865ba907d3a994af180e3262)](http://192.168.0.8:9000/dashboard?id=node-api)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Edev-io_workflow-learning&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Edev-io_workflow-learning)
 
-[![Lines of Code](http://192.168.0.8:9000/api/project_badges/measure?project=node-api&metric=ncloc&token=sqb_486f380728261867865ba907d3a994af180e3262)](http://192.168.0.8:9000/dashboard?id=node-api)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Edev-io_workflow-learning&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Edev-io_workflow-learning)
+
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Edev-io_workflow-learning&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Edev-io_workflow-learning)
